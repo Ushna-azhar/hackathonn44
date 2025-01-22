@@ -1,6 +1,8 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import ReviewRating from './ReviewRatings';
+import Image from 'next/image';
 
 // Mock data for valid discount codes and gift coupons
 const discountCoupons = [
@@ -12,8 +14,16 @@ const giftCoupons = [
   { code: 'GIFT100', discountValue: 100 }, // $100 off
 ];
 
+// Define a type for the product in the cart
+interface CartProduct {
+  name: string;
+  image: string;
+  price: number;
+  quantity: number;
+}
+
 const CheckoutPage: React.FC = () => {
-  const [cart, setCart] = useState<any[]>([]); // Store cart items
+  const [cart, setCart] = useState<CartProduct[]>([]); // Store cart items
   const [total, setTotal] = useState<number>(0);
   const [voucherCode, setVoucherCode] = useState('');
   const [discountApplied, setDiscountApplied] = useState(false);
@@ -72,10 +82,12 @@ const CheckoutPage: React.FC = () => {
             <li key={index} className="flex justify-between py-2 border-b">
               <div className="flex items-center">
                 {/* Product Image */}
-                <img
-                  src={product.image} // Ensure product.image contains the correct path
+                <Image
+                  src={product.image}
                   alt={product.name}
-                  className="w-16 h-16 object-cover mr-4"
+                  width={64} // Set fixed width and height
+                  height={64}
+                  className="object-cover mr-4"
                 />
                 <div>
                   <span>{product.name}</span>
