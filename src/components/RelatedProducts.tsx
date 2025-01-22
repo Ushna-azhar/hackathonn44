@@ -1,4 +1,6 @@
+
 import { useState, useEffect } from 'react';
+import Image from 'next/image'; // Import Image from next/image
 
 // Define the type for a product
 interface Product {
@@ -49,9 +51,11 @@ const RelatedProducts = ({ currentProductCategory }: { currentProductCategory: s
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {relatedProducts.map((product) => (
           <div key={`${product.price}-${product.productName}`} className="border border-gray-200 rounded-md p-4 bg-white shadow-lg hover:shadow-xl">
-            <img
+            <Image
               src={product.image}
               alt={product.productName}
+              width={500} // Set width for image
+              height={400} // Set height for image
               className="w-full h-48 object-cover mb-4 rounded-md"
             />
             <h3 className="text-lg text-gray-800 font-semibold">{product.productName}</h3>
