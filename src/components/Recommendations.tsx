@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Image from 'next/image'; // Import Image from next/image
 
 // Define the type for a product
 interface Product {
@@ -40,9 +41,11 @@ const Recommendations = () => {
             key={product.id}
             className="border border-gray-300 rounded-lg overflow-hidden shadow-lg bg-white hover:shadow-xl transition duration-300 ease-in-out transform hover:scale-105"
           >
-            <img
+            <Image
               src={product.image}
               alt={product.title}
+              width={500} // Set width for image
+              height={400} // Set height for image
               className="w-full h-64 object-cover mb-4 transition-transform duration-500 ease-in-out transform hover:scale-110"
             />
             <div className="p-4">
