@@ -2,8 +2,17 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'; // Import Image from next/image
 
+// Define the type for the product
+interface Product {
+  id: string;
+  productName: string;
+  image: string;
+  price: string;
+}
+
 const FeaturedProducts = () => {
-  const [products, setProducts] = useState<any[]>([]);
+  // Use the Product type instead of any[]
+  const [products, setProducts] = useState<Product[]>([]);
 
   useEffect(() => {
     // Fetch featured products data from the API
