@@ -3,10 +3,19 @@ import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import Image from 'next/image'; // Import next/image
 
+type Product = {
+  productName: string;
+  price: number;
+  category: string;
+  image: string;
+  description: string;
+  colors: string[];
+};
+
 const Page = () => {
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [colors, setColors] = useState([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
+  const [colors, setColors] = useState<string[]>([]);
 
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
@@ -22,34 +31,14 @@ const Page = () => {
       const data = await response.json();
 
       const fetchedProducts = data.data;
-      const customProducts = [
-        {
-          id: 'manual1',
-          productName: 'Handmade Wooden Bracelet',
-          price: 15.99,
-          category: 'Accessories',
-          image: '/path/to/image.jpg',
-          description: 'A beautifully crafted wooden bracelet.',
-          colors: ['brown', 'beige'],
-        },
-        {
-          id: 'manual2',
-          productName: 'Ceramic Mug',
-          price: 9.99,
-          category: 'Kitchenware',
-          image: '/path/to/image.jpg',
-          description: 'A unique ceramic mug perfect for your coffee.',
-          colors: ['white', 'blue'],
-        },
-      ];
 
-      const allProducts = [...fetchedProducts, ...customProducts];
-      setFilteredProducts(allProducts);
+      // Set the filtered products and categories/colors
+      setFilteredProducts(fetchedProducts);
 
-      const uniqueCategories = [...new Set(allProducts.map((product) => product.category))];
+      const uniqueCategories = [...new Set(fetchedProducts.map((product: Product) => product.category))];
       setCategories(uniqueCategories);
 
-      const uniqueColors = [...new Set(allProducts.flatMap((product) => product.colors))];
+      const uniqueColors = [...new Set(fetchedProducts.flatMap((product: Product) => product.colors))];
       setColors(uniqueColors);
     };
 
@@ -72,7 +61,7 @@ const Page = () => {
     return filteredData.slice(indexOfFirstItem, indexOfLastItem);
   }, [filteredData, currentPage]);
 
-  const handlePageChange = (page) => {
+  const handlePageChange = (page: number) => {
     if (page > 0 && page <= totalPages) {
       setCurrentPage(page);
     }
@@ -140,7 +129,7 @@ const Page = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {paginatedData.map((product) => (
           <div
-            key={`${product.category}-${product.productName}-${product.price}-${Math.random()}`}
+            key={`${product.productName}-${product.price}`} // Use productName and price as key
             className="border rounded-md p-4"
           >
             <Image 
