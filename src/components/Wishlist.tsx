@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image'; // Import Image from next/image
 
 // Define the Product type
 interface Product {
@@ -44,10 +45,12 @@ const WishlistPage = () => {
         {wishlist.map((product, index) => (
           <li key={index} className="flex flex-col sm:flex-row justify-between border-b py-4">
             <div className="flex items-center sm:w-2/3">
-              <img
+              <Image
                 src={product.image}
                 alt={product.productName}
-                className="w-16 h-16 object-cover mr-4 mb-4 sm:mb-0"
+                width={64} // Set width for image
+                height={64} // Set height for image
+                className="object-cover mr-4 mb-4 sm:mb-0"
               />
               <div>
                 <h2 className="text-lg font-semibold">{product.productName}</h2>
