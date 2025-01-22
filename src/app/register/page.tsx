@@ -37,7 +37,7 @@ const Register = () => {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setSuccess(true);
       setError(null); // Reset error message if registration is successful
-    } catch (error) {
+    } catch (err) {
       setError('Registration failed, please try again');
     } finally {
       setLoading(false);
