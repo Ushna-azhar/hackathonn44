@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Header from '@/components/Header';
-
+import Clientsreview from '@/components/Clientsreview';
 import Category from '@/components/Category';
 import FeaturedProducts from '@/components/FeaturedProducts';
 import Testimonal from '@/components/Testimonal'
@@ -24,6 +24,7 @@ const HomePage = () => {
       <FeaturedProducts/>
       <Testimonal/>
       <div className='bg-white'><Recommendations/></div>
+      <Clientsreview/>
       
       <DialogflowChatbot/>
 
