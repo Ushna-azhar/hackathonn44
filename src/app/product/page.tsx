@@ -1,10 +1,8 @@
-'use client';
-
 import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
+import Image from 'next/image'; // Import next/image
 
 const Page = () => {
-  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [colors, setColors] = useState([]);
@@ -45,7 +43,6 @@ const Page = () => {
       ];
 
       const allProducts = [...fetchedProducts, ...customProducts];
-      setProducts(allProducts);
       setFilteredProducts(allProducts);
 
       const uniqueCategories = [...new Set(allProducts.map((product) => product.category))];
@@ -145,7 +142,13 @@ const Page = () => {
             key={`${product.category}-${product.productName}-${product.price}-${Math.random()}`}
             className="border rounded-md p-4"
           >
-            <img src={product.image} alt={product.productName} className="w-full h-48 object-cover mb-4" />
+            <Image 
+              src={product.image} 
+              alt={product.productName} 
+              className="w-full h-48 object-cover mb-4" 
+              width={500} 
+              height={500}
+            />
             <h3 className="text-lg font-semibold">{product.productName}</h3>
             <p className="text-sm text-gray-500">{product.category}</p>
             <p className="text-xl font-bold">${product.price}</p>
