@@ -1,4 +1,4 @@
-const Reviews = () => {
+const Clientsreview = () => {
   return (
     <section className="py-12 bg-gray-100">
       <div className="container mx-auto text-center">
@@ -23,3 +23,5 @@ const Reviews = () => {
     </section>
   );
 };
+
+export default Clientsreview; // Export the Reviews component
