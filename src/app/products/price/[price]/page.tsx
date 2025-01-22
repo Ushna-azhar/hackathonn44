@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation'; // For dynamic route params
 import RelatedProducts from '@/components/RelatedProducts';
+import Image from 'next/image'; // Import Image for optimization
 
 // Define the Product type
 type Product = {
@@ -146,7 +147,13 @@ const ProductByPrice = () => {
               key={`${product.productName}-${product.price}-${product.category}-${index}`} // Added index to ensure uniqueness
               className="border rounded-md p-4"
             >
-              <img src={product.image} alt={product.productName} className="w-full h-48 object-cover mb-4" />
+              <Image 
+                src={product.image} 
+                alt={product.productName} 
+                className="w-full h-48 object-cover mb-4" 
+                width={500}  // Specify the width of the image
+                height={300}  // Specify the height of the image
+              />
               <h2 className="text-lg font-semibold">{product.productName}</h2>
               <p className="text-sm text-gray-600">{product.description}</p>
               <p className="text-xl font-bold">{product.price} PKR</p>
