@@ -31,7 +31,7 @@
     "react-router-dom": "^7.1.3",
     "react-simple-chatbot": "^0.6.1",
     "sanity": "^3.70.0",
-    "styled-components": "6.1",
+    "styled-components": "^4.0.0",  // Updated to a compatible version
     "use-debounce": "^10.0.4",
     "uuid": "^11.0.5"
   },
