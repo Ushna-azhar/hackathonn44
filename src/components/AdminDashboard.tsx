@@ -232,6 +232,8 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
         );
+      case 'bulkUpload':
+        return <BulkUpload />; // Add BulkUpload component here
       default:
         return null;
     }
