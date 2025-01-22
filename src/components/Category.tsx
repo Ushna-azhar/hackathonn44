@@ -3,9 +3,19 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image'; // Import Image from Next.js
 
+// Define the structure of a product
+interface Product {
+  productName: string;
+  description: string;
+  price: number;
+  status: string;
+  category: string;
+  image: string;
+}
+
 const Category = () => {
   const [categories, setCategories] = useState<string[]>([]);
-  const [products, setProducts] = useState<any[]>([]);
+  const [products, setProducts] = useState<Product[]>([]); // Use Product[] type for products
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -19,7 +29,7 @@ const Category = () => {
         if (result.success && Array.isArray(result.data)) {
           // Extract categories from the products
           const categorySet = new Set<string>();
-          result.data.forEach((product: any) => {
+          result.data.forEach((product: Product) => {
             if (product.category) {
               categorySet.add(product.category);
             }
