@@ -31,13 +31,12 @@ const Register = () => {
       return;
     }
 
-    // Simulate a registration process (replace with your API call)
     try {
       // Mock API call
       await new Promise((resolve) => setTimeout(resolve, 2000));
       setSuccess(true);
       setError(null); // Reset error message if registration is successful
-    } catch (err) {
+    } catch {
       setError('Registration failed, please try again');
     } finally {
       setLoading(false);
