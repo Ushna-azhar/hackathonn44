@@ -4,6 +4,7 @@ import { useDebounce } from 'use-debounce'; // Import debounce hook
 import { FaSearch, FaShoppingCart, FaHeart, FaUser, FaUserPlus, FaBars, FaTimes, FaGlobe } from 'react-icons/fa';
 import { useLanguage } from '@/context/LanguageContext';
 import Link from 'next/link';
+import Image from 'next/image'; // Import Image from next/image
 
 // Define the product type
 interface Product {
@@ -162,7 +163,13 @@ export default function Navbar() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProducts.map((product) => (
               <div key={product.productName} className="border p-4 rounded-md">
-                <img src={product.image} alt={product.productName} className="w-full h-48 object-cover" />
+                <Image 
+                  src={product.image} 
+                  alt={product.productName} 
+                  width={500} 
+                  height={300} 
+                  className="w-full h-48 object-cover" 
+                />
                 <div className="mt-2">
                   <h4 className="font-semibold">{product.productName}</h4>
                   <p>{product.category}</p>
